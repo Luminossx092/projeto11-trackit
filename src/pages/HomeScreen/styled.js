@@ -41,4 +41,9 @@ export const InputsContainer = styled.div`
         color: white;
         font-size: 21px;
     }
+    Audio{
+        display:flex;
+        justify-content:center;
+        color:red;
+    }
 `
