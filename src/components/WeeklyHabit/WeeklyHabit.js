@@ -1,21 +1,27 @@
+import { useState } from "react"
 import styled from "styled-components"
-import { Colors } from "../../constants/constants"
+import { Colors, WeekDays } from "../../constants/constants"
+import LoadingDots from "../LoadingDots";
 
-export default function WeeklyHabit(){
+export default function WeeklyHabit({setCreateNewHabit, AddNewHabit,isLoading ,name, setName}) {
+    const [weekPressButtons, setWeekPressButtons] = useState([])
 
-    const weekDays = ["D","S","T","Q","Q","S","S"]
+    function ToggleWeekDay(i){
+        if(!weekPressButtons.some(d=>d===i)){setWeekPressButtons([...weekPressButtons,i])}
+        else{setWeekPressButtons(weekPressButtons.filter((d)=>d!==i))}
+    }
     return (
         <Container>
             <HabitName>
-                <input placeholder="nome do hábito"></input>
+                <input disabled={isLoading} value={name} onChange={(e)=>setName(e.target.value)} placeholder="nome do hábito"></input>
             </HabitName>
             <WeekList>
-                {weekDays.map(d=>
-                    <button>{d}</button>)}
+                {WeekDays.map((d,i )=>
+                    <WeekButton key={i} isClicked={weekPressButtons.some(d=>d===i+1)} onClick={()=>ToggleWeekDay(i+1)}>{d}</WeekButton>)}
             </WeekList>
             <Buttons>
-                <p>Cancelar</p>
-                <button>Salvar</button>
+                <p disabled={isLoading} onClick={() => setCreateNewHabit(false)}>Cancelar</p>
+                <button disabled={isLoading} onClick={()=>AddNewHabit({name,days:weekPressButtons.sort()})}>{isLoading ? <LoadingDots/>:"Salvar"}</button>
             </Buttons>
         </Container>
     )
@@ -48,19 +54,15 @@ const HabitName = styled.div`
 const WeekList = styled.div`
     display:flex;
     gap:3px;
-    button{
-        height: 30px;
-        width: 30px;
-        border-radius: 5px;
-}
-
-/*font color: #DBDBDB;
-
-border: 1px solid #D4D4D4
-background:  #D5D5D5
-background: #CFCFCF;
-border: 1px solid #CFCFCF
- */
+`
+const WeekButton = styled.button`
+    font-size:20px;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    color: ${props=>props.isClicked?'white':"#DBDBDB"};
+    background-color:${props=>props.isClicked?"#DBDBDB":'white'};
+    border:1px solid #D4D4D4;
 `
 const Buttons = styled.div`
     display: flex;
@@ -70,14 +72,17 @@ const Buttons = styled.div`
     gap:23px;
     bottom:15px;
     right:15px;
-    button{
-        height: 35px;
-        width: 84px;
-        border-radius: 5px;
-        background-color: ${Colors.azulClaro};
-        font-size: 16px;
+button{
+    height: 35px;
+    width: 84px;
+    border-radius: 5px;
+    background-color: ${Colors.azulClaro};
+    font-size: 16px;
+}
+p{
+    font-size: 16px;
+    :hover{
+        cursor: pointer;
     }
-    p{
-        font-size: 16px;
-    }
+}
 `

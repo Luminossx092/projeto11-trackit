@@ -1,10 +1,24 @@
+import axios from "axios";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
+import { ProfileDataContext } from "../../components/ProfileDataContext";
 import TodayHabits from "../../components/TodayHabits/TodayHabits";
-import { Colors } from "../../constants/constants";
+import { BaseURL, Colors } from "../../constants/constants";
 
 export default function TodaysPage() {
+    const userProfile = useContext(ProfileDataContext);
+    useEffect(()=>{
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${userProfile.token}`
+            }
+        }
+        axios.get(`${BaseURL}habits`,config)
+        .then((r)=>{console.log(r)})
+        .catch((e)=>alert(e.response.data))
+    },[]);
     return (
         <>
             <Navbar />

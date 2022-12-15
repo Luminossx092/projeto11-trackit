@@ -1,11 +1,14 @@
+import { useContext } from "react"
 import styled from "styled-components"
-import { Colors, logo } from "../../constants/constants"
+import { Colors } from "../../constants/constants"
+import { ProfileDataContext } from "../ProfileDataContext"
 
 export default function Navbar() {
+    const profile = useContext(ProfileDataContext)
     return (
         <NavbarContainer>
             <h1>TrackIt</h1>
-            <img src={logo}/>
+            <img src={profile.image}/>
         </NavbarContainer>
     )
 }
@@ -21,6 +24,7 @@ const NavbarContainer = styled.div`
     background-color: ${Colors.azul};
     position:fixed;
     top:0;
+    z-index:1;
 
     h1{
         font-family: 'Playball', cursive;

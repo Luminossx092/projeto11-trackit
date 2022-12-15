@@ -24,7 +24,7 @@ export default function RegistryPage() {
     function TryRegistry(e) {
         e.preventDefault();
         setIsLoading(true)
-        axios.post(`${BaseURL}sign-up`, form)
+        axios.post(`${BaseURL}auth/sign-up`, form)
             .then(() => {
                 setIsLoading(false);
                 navigate("/")

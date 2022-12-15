@@ -6,7 +6,8 @@ export const Colors = {
     gray: "gray",
     preto: "#666666"
 }
+export const WeekDays = ["D","S","T","Q","Q","S","S"]
 
 export const logo = Logo;
 
-export const BaseURL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/';
+export const BaseURL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/';

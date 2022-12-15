@@ -6,7 +6,7 @@ import LoadingDots from "../../components/LoadingDots"
 import { InputStyle } from "../../styles/inputStyle"
 import { HomeScreenContainer, InputsContainer } from "./styled"
 
-export default function HomeScreen() {
+export default function HomeScreen({setLoginData}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false)
@@ -15,11 +15,11 @@ export default function HomeScreen() {
     function TryLoggingIn(e) {
         e.preventDefault();
         setIsLoading(true)
-        axios.post(`${BaseURL}login`, { email, password })
+        axios.post(`${BaseURL}auth/login`, { email, password })
             .then((r) => {
-                console.log(r);
+                setLoginData(r.data);
                 setIsLoading(false);
-                (navigate("/hoje"))})
+                navigate("/hoje")})
             .catch((e) => {
                 alert(e.response.data.message);
                 setIsLoading(false);
