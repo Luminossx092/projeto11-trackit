@@ -17,9 +17,13 @@ export const FooterContainer = styled.div`
         color:${Colors.azulClaro}
     }
     button{
-        height: 91px;
-        width: 91px;
-        border-radius:100%;
-        background-color: ${Colors.azulClaro};
+       
     }
+`
+export const BotaoHoje = styled.div`
+    height: 91px;
+    width: 91px;
+    margin-bottom:45px;
+    border-radius:100%;
+    background-color: ${Colors.azulClaro};
 `

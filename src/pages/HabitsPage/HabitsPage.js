@@ -68,8 +68,7 @@ export default function HabitsPage({ habits, setHabits }) {
                     <NoHabitMessage>
                         <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
                     </NoHabitMessage> :
-                    habits.map(h => <HabitWeekCard key={h.id} habit={h} RemoveHabit={RemoveHabit} >
-                    </HabitWeekCard>)}
+                    habits.map(h => <HabitWeekCard key={h.id} habit={h} RemoveHabit={RemoveHabit} />)}
             </HabitsContainer>
             <Footer />
         </>

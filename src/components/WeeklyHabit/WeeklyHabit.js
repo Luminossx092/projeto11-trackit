@@ -17,7 +17,7 @@ export default function WeeklyHabit({setCreateNewHabit, AddNewHabit,isLoading ,n
             </HabitName>
             <WeekList>
                 {WeekDays.map((d,i )=>
-                    <WeekButton key={i} isClicked={weekPressButtons.some(d=>d===i+1)} onClick={()=>ToggleWeekDay(i+1)}>{d}</WeekButton>)}
+                    <WeekButton key={i} isClicked={weekPressButtons.some(d=>d===i)} onClick={()=>ToggleWeekDay(i)}>{d}</WeekButton>)}
             </WeekList>
             <Buttons>
                 <p disabled={isLoading} onClick={() => setCreateNewHabit(false)}>Cancelar</p>

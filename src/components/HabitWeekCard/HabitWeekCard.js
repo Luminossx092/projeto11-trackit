@@ -11,7 +11,7 @@ export default function HabitWeekCard({ habit , RemoveHabit}) {
             </HabitName>
             <WeekList>
                 {WeekDays.map((d, i) =>
-                    <WeekDay key={i} isClicked={days.some(d => d === i + 1)}>{d}</WeekDay>)}
+                    <WeekDay key={i} isClicked={days.some(d => d === i)}>{d}</WeekDay>)}
             </WeekList>
             <Trash onClick={()=>window.confirm("Você tem certeza que quer apagar este hábito?")&&RemoveHabit(id)}>
                 <BsTrash />
@@ -33,7 +33,6 @@ const Container = styled.div`
     box-sizing:border-box;
 `
 const HabitName = styled.div`
-   
     p{
         text-align: left;
         font-size: 20px;
@@ -59,7 +58,7 @@ const WeekDay = styled.p`
     border:1px solid #D4D4D4;
 `
 const Trash = styled.p`
-position:absolute;
-top:10px;
-right:10px;
+    position:absolute;
+    top:10px;
+    right:10px;
 `

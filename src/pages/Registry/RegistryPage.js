@@ -75,7 +75,7 @@ export default function RegistryPage() {
                     <button type="submit" disabled={isLoading}>{isLoading ? <LoadingDots /> : "Cadastrar"}</button>
                 </InputsContainer>
             </form>
-            <Link to={"/"}><p>Já tem uma conta? Faça login!</p></Link>
+            <Link to={"/"} style={{textDecoration: 'none'}}><p>Já tem uma conta? Faça login!</p></Link>
         </RegistryPageContainer>
     )
 }

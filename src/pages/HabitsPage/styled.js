@@ -4,6 +4,7 @@ import { Colors } from "../../constants/constants"
 export const HabitsContainer = styled.div`
     width: 375px;
     margin-top:70px;
+    margin-bottom: 135px;
     padding: 0 18px;
     display:flex;
     flex-direction:column;

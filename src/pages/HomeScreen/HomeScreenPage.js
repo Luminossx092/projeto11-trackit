@@ -46,7 +46,7 @@ export default function HomeScreen({setLoginData}) {
                     <button type="submit" disabled={isLoading}>{isLoading ? <LoadingDots/>:"Entrar"}</button>
                 </InputsContainer>
             </form>
-            <Link to={'/cadastro'}><p>Não tem uma conta? Cadastre-se!</p></Link>
+            <Link to={'/cadastro'} style={{textDecoration: 'none'}}><p>Não tem uma conta? Cadastre-se!</p></Link>
         </HomeScreenContainer>
     )
 }
