@@ -54,7 +54,7 @@ export default function TodaysPage() {
                     <h1>{WeekNames[dayjs().get('day')]}, {dayjs().get('date')}/{dayjs().get('month')}</h1>
                     <p>{isThereAnyHabit ?
                         'Nenhum hábito concluído ainda' :
-                        `${habits.filter(h => h.done).length*100 / habits.length}% dos hábitos concluídos`}</p>
+                        `${(habits.filter(h => h.done).length*100 / habits.length).toFixed(2)}% dos hábitos concluídos`}</p>
                 </DateAndProgressContainer>
                 {habits.map(h =>  <TodayHabits key={h.id} habit={h} CheckHabitDone={CheckHabitDone} />)}
             </TodaysPageContainer>
