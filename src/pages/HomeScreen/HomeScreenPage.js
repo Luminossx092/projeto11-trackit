@@ -31,22 +31,22 @@ export default function HomeScreen({setLoginData}) {
             <h1>TrackIt</h1>
             <form onSubmit={TryLoggingIn}>
                 <InputsContainer>
-                    <InputStyle type={"email"}
+                    <InputStyle data-test="email-input" type={"email"}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="email"
                         disabled={isLoading}
                         required />
-                    <InputStyle type={"password"}
+                    <InputStyle data-test="password-input" type={"password"}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="senha"
                         disabled={isLoading}
                         required />
-                    <button type="submit" disabled={isLoading}>{isLoading ? <LoadingDots/>:"Entrar"}</button>
+                    <button data-test="login-btn" type="submit" disabled={isLoading}>{isLoading ? <LoadingDots/>:"Entrar"}</button>
                 </InputsContainer>
             </form>
-            <Link to={'/cadastro'} style={{textDecoration: 'none'}}><p>Não tem uma conta? Cadastre-se!</p></Link>
+            <Link data-test="signup-link" to={'/cadastro'} style={{textDecoration: 'none'}}><p>Não tem uma conta? Cadastre-se!</p></Link>
         </HomeScreenContainer>
     )
 }

@@ -8,7 +8,9 @@ import WeeklyHabit from "../../components/WeeklyHabit/WeeklyHabit";
 import { BaseURL } from "../../constants/constants";
 import { AddHabitContainer, HabitsContainer, NoHabitMessage } from "./styled";
 
-export default function HabitsPage({ habits, setHabits }) {
+export default function HabitsPage() {
+    const [habits, setHabits] = useState([])
+    const [weekPressButtons, setWeekPressButtons] = useState([])
     const userProfile = useContext(ProfileDataContext);
     const [createNewHabit, setCreateNewHabit] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
@@ -35,6 +37,7 @@ export default function HabitsPage({ habits, setHabits }) {
             .then((r) => {
                 console.log(r)
                 setName('');
+                setWeekPressButtons([])
                 setCreateNewHabit(false);
                 setIsLoading(false);
                 setHabits([...habits, r.data])
@@ -45,15 +48,15 @@ export default function HabitsPage({ habits, setHabits }) {
                 alert(e.message)
             })
     }
-    function RemoveHabit(habitId){
+    function RemoveHabit(habitId) {
         axios.delete(`${BaseURL}habits/${habitId}`, config)
-        .then((r) => {
-            console.log(r)
-            setHabits(habits.filter((h)=>h.id !== habitId))
-        })
-        .catch((e) => {
-            alert(e.message)
-        })
+            .then((r) => {
+                console.log(r)
+                setHabits(habits.filter((h) => h.id !== habitId))
+            })
+            .catch((e) => {
+                alert(e.message)
+            })
     }
     return (
         <>
@@ -61,9 +64,17 @@ export default function HabitsPage({ habits, setHabits }) {
             <HabitsContainer>
                 <AddHabitContainer>
                     <p>Meus hábitos</p>
-                    <button onClick={() => setCreateNewHabit(true)}>+</button>
-                </AddHabitContainer>
-                {createNewHabit && <WeeklyHabit setCreateNewHabit={setCreateNewHabit} AddNewHabit={AddNewHabit} isLoading={isLoading} name={name} setName={setName}/>}
+                    <button data-test="habit-create-btn" onClick={() => setCreateNewHabit(true)}>+</button>
+                </AddHabitContainer >
+                {createNewHabit && <WeeklyHabit 
+                    setCreateNewHabit={setCreateNewHabit}
+                    AddNewHabit={AddNewHabit}
+                    isLoading={isLoading}
+                    name={name}
+                    setName={setName}
+                    weekPressButtons={weekPressButtons}
+                    setWeekPressButtons={setWeekPressButtons}
+                />}
                 {habits.length === 0 ?
                     <NoHabitMessage>
                         <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>

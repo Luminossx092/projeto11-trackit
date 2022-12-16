@@ -6,7 +6,7 @@ import { ProfileDataContext } from "../ProfileDataContext"
 export default function Navbar() {
     const profile = useContext(ProfileDataContext)
     return (
-        <NavbarContainer>
+        <NavbarContainer data-test="header" >
             <h1>TrackIt</h1>
             <img src={profile.image}/>
         </NavbarContainer>

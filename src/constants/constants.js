@@ -3,7 +3,7 @@ import Logo from "../images/logo.png"
 export const Colors = {
     azul:'#126BA5',
     azulClaro:'#52B6FF',
-    gray: "gray",
+    gray: "F2F2F2",
     preto: "#666666",
     verde: "#8FC549"
 }

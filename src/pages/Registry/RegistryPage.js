@@ -41,6 +41,7 @@ export default function RegistryPage() {
             <form onSubmit={TryRegistry}>
                 <InputsContainer>
                     <InputStyle
+                        data-test="email-input"
                         type="email"
                         name="email"
                         onChange={handleForm}
@@ -49,6 +50,7 @@ export default function RegistryPage() {
                         required
                         placeholder="email" />
                     <InputStyle
+                        data-test="password-input"
                         type="password"
                         name="password"
                         onChange={handleForm}
@@ -57,6 +59,7 @@ export default function RegistryPage() {
                         required
                         placeholder="senha" />
                     <InputStyle
+                        data-test="user-name-input"
                         type="text"
                         name="name"
                         onChange={handleForm}
@@ -65,6 +68,7 @@ export default function RegistryPage() {
                         required
                         placeholder="nome" />
                     <InputStyle
+                        data-test="user-image-input"
                         type="url"
                         name="image"
                         onChange={handleForm}
@@ -72,10 +76,10 @@ export default function RegistryPage() {
                         disabled={isLoading}
                         required
                         placeholder="foto" />
-                    <button type="submit" disabled={isLoading}>{isLoading ? <LoadingDots /> : "Cadastrar"}</button>
+                    <button data-test="signup-btn" type="submit" disabled={isLoading}>{isLoading ? <LoadingDots /> : "Cadastrar"}</button>
                 </InputsContainer>
             </form>
-            <Link to={"/"} style={{textDecoration: 'none'}}><p>Já tem uma conta? Faça login!</p></Link>
+            <Link data-test="login-link" to={"/"} style={{ textDecoration: 'none' }}><p>Já tem uma conta? Faça login!</p></Link>
         </RegistryPageContainer>
     )
 }

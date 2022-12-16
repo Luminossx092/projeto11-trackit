@@ -3,25 +3,23 @@ import styled from "styled-components"
 import { Colors, WeekDays } from "../../constants/constants"
 import LoadingDots from "../LoadingDots";
 
-export default function WeeklyHabit({setCreateNewHabit, AddNewHabit,isLoading ,name, setName}) {
-    const [weekPressButtons, setWeekPressButtons] = useState([])
-
+export default function WeeklyHabit({setCreateNewHabit, AddNewHabit,isLoading ,name, setName,weekPressButtons, setWeekPressButtons}) {
     function ToggleWeekDay(i){
         if(!weekPressButtons.some(d=>d===i)){setWeekPressButtons([...weekPressButtons,i])}
         else{setWeekPressButtons(weekPressButtons.filter((d)=>d!==i))}
     }
     return (
-        <Container>
+        <Container data-test="habit-create-container">
             <HabitName>
-                <input disabled={isLoading} value={name} onChange={(e)=>setName(e.target.value)} placeholder="nome do hábito"></input>
+                <input data-test="habit-name-input" disabled={isLoading} value={name} onChange={(e)=>setName(e.target.value)} placeholder="nome do hábito"></input>
             </HabitName>
-            <WeekList>
+            <WeekList >
                 {WeekDays.map((d,i )=>
-                    <WeekButton key={i} isClicked={weekPressButtons.some(d=>d===i)} onClick={()=>ToggleWeekDay(i)}>{d}</WeekButton>)}
+                    <WeekButton data-test="habit-day" key={i} isClicked={weekPressButtons.some(d=>d===i)} onClick={()=>ToggleWeekDay(i)}>{d}</WeekButton>)}
             </WeekList>
             <Buttons>
-                <p disabled={isLoading} onClick={() => setCreateNewHabit(false)}>Cancelar</p>
-                <button disabled={isLoading} onClick={()=>AddNewHabit({name,days:weekPressButtons.sort()})}>{isLoading ? <LoadingDots/>:"Salvar"}</button>
+                <p data-test="habit-create-cancel-btn" disabled={isLoading} onClick={() => setCreateNewHabit(false)}>Cancelar</p>
+                <button data-test="habit-create-save-btn" disabled={isLoading} onClick={()=>AddNewHabit({name,days:weekPressButtons.sort()})}>{isLoading ? <LoadingDots/>:"Salvar"}</button>
             </Buttons>
         </Container>
     )

@@ -3,9 +3,10 @@ import { Colors } from "../../constants/constants"
 
 export const HabitsContainer = styled.div`
     width: 375px;
+    min-height:600px;
     margin-top:70px;
-    margin-bottom: 135px;
     padding: 0 18px;
+    padding-bottom:135px;
     display:flex;
     flex-direction:column;
     gap:20px;

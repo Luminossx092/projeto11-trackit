@@ -3,13 +3,14 @@ import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
-import { ProfileDataContext } from "../../components/ProfileDataContext";
+import { ProfileDataContext, ProfileTodayDataContext } from "../../components/ProfileDataContext";
 import TodayHabits from "../../components/TodayHabits/TodayHabits";
 import { BaseURL, Colors, WeekNames } from "../../constants/constants";
 
-export default function TodaysPage() {
+export default function TodaysPage({setHabits}) {
     const userProfile = useContext(ProfileDataContext);
-    const [habits, setHabits] = useState([]);
+    const habits = useContext(ProfileTodayDataContext);
+    //const [habits, setHabits] = useState([]);
     const dayjs = require('dayjs');
     const isThereAnyHabit = habits.length === 0 || !habits.some(h => h.done);
     const config = {
@@ -51,8 +52,8 @@ export default function TodaysPage() {
             <Navbar />
             <TodaysPageContainer>
                 <DateAndProgressContainer isThere={isThereAnyHabit}>
-                    <h1>{WeekNames[dayjs().get('day')]}, {dayjs().get('date')}/{dayjs().get('month')}</h1>
-                    <p>{isThereAnyHabit ?
+                    <h1 data-test="today" >{WeekNames[dayjs().get('day')]}, {dayjs().get('date')}/{dayjs().get('month')}</h1>
+                    <p data-test="today-counter">{isThereAnyHabit ?
                         'Nenhum hábito concluído ainda' :
                         `${(habits.filter(h => h.done).length*100 / habits.length).toFixed(2)}% dos hábitos concluídos`}</p>
                 </DateAndProgressContainer>
@@ -65,6 +66,8 @@ export default function TodaysPage() {
 const TodaysPageContainer = styled.div`
     margin-top:70px;
     padding:0 17px;
+    padding-bottom:135px;
+    min-height:600px;
     width:375px;
     gap:3px;
     box-sizing:border-box;

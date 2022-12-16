@@ -5,15 +5,15 @@ import { BsTrash } from "react-icons/bs";
 export default function HabitWeekCard({ habit , RemoveHabit}) {
     const { days, name,id } = habit;
     return (
-        <Container>
+        <Container data-test="habit-container">
             <HabitName>
-                <p>{name}</p>
+                <p data-test="habit-name">{name}</p>
             </HabitName>
             <WeekList>
                 {WeekDays.map((d, i) =>
-                    <WeekDay key={i} isClicked={days.some(d => d === i)}>{d}</WeekDay>)}
+                    <WeekDay data-test="habit-day" key={i} isClicked={days.some(d => d === i)}>{d}</WeekDay>)}
             </WeekList>
-            <Trash onClick={()=>window.confirm("Você tem certeza que quer apagar este hábito?")&&RemoveHabit(id)}>
+            <Trash data-test="habit-delete-btn" onClick={()=>window.confirm("Você tem certeza que quer apagar este hábito?")&&RemoveHabit(id)}>
                 <BsTrash />
             </Trash>
         </Container>

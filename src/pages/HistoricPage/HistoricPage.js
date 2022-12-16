@@ -20,16 +20,18 @@ export default function HistoricPage() {
 
 const HistoricContainer = styled.div`
     width:375px;
-    
+    min-height:600px;
     padding:0 17px;
+    padding-bottom:135px;
     margin-top:70px;
+    gap:20px;
+    background-color:#F2F2F2;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    box-sizing:border-box;
     h1{
         display:flex;
-        align-items:center;
-        height:74px;
+        margin-top:28px;
         font-size: 23px;
         color: ${Colors.azul}
     }

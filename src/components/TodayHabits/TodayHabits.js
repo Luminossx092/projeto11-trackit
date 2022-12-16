@@ -6,16 +6,16 @@ import { Colors } from "../../constants/constants"
 export default function TodayHabits({ habit, CheckHabitDone }) {
     const { id, name, done, currentSequence, highestSequence } = habit;
     return (
-        <Container>
+        <Container data-test="today-habit-container" >
             <HabitData>
-                <h1>{name}</h1>
-                <p>Sequência atual:
+                <h1 data-test="today-habit-name">{name}</h1>
+                <p data-test="today-habit-sequence">Sequência atual:
                     <SerVerdeOuNaoSerEisAQuestao
                         verde={currentSequence > 0}>
                         {currentSequence} dia{currentSequence !== 1 && "s"}
                     </SerVerdeOuNaoSerEisAQuestao>
                 </p>
-                <p>Seu recorde:
+                <p data-test="today-habit-record">Seu recorde:
                     <SerVerdeOuNaoSerEisAQuestao
                         verde={highestSequence === currentSequence && highestSequence > 0}>
                         {highestSequence} dia{highestSequence !== 1 && "s"}
@@ -23,6 +23,7 @@ export default function TodayHabits({ habit, CheckHabitDone }) {
                 </p>
             </HabitData>
             <BsFillCheckSquareFill
+                data-test="today-habit-check-btn"
                 fontSize={'70px'}
                 onClick={() => CheckHabitDone(habit)}
                 color={done ? Colors.verde : '#E7E7E7'} />
